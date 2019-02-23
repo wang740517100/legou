@@ -1,0 +1,14 @@
+cn\wangkf\item\api\SpuApi.class
+cn\wangkf\item\api\CategoryApi.class
+cn\wangkf\item\pojo\SpuDetail.class
+cn\wangkf\item\api\SpecApi.class
+cn\wangkf\item\pojo\Sku.class
+cn\wangkf\item\pojo\Spu.class
+cn\wangkf\item\pojo\Stock.class
+cn\wangkf\item\api\GoodsApi.class
+cn\wangkf\item\ItemInterface.class
+cn\wangkf\item\pojo\Specification.class
+cn\wangkf\item\bo\SpuBo.class
+cn\wangkf\item\api\BrandApi.class
+cn\wangkf\item\pojo\Brand.class
+cn\wangkf\item\pojo\Category.class

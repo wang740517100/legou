@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/file-server/file-server.iml" filepath="$PROJECT_DIR$/file-server/file-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-auth/legou-auth.iml" filepath="$PROJECT_DIR$/legou-auth/legou-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-auth/legou-auth-common/legou-auth-common.iml" filepath="$PROJECT_DIR$/legou-auth/legou-auth-common/legou-auth-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-auth/legou-auth-service/legou-auth-service.iml" filepath="$PROJECT_DIR$/legou-auth/legou-auth-service/legou-auth-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-common/legou-common.iml" filepath="$PROJECT_DIR$/legou-common/legou-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-gateway/legou-gateway.iml" filepath="$PROJECT_DIR$/legou-gateway/legou-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-item/legou-item.iml" filepath="$PROJECT_DIR$/legou-item/legou-item.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-item/legou-item-interface/legou-item-interface.iml" filepath="$PROJECT_DIR$/legou-item/legou-item-interface/legou-item-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-item/legou-item-service/legou-item-service.iml" filepath="$PROJECT_DIR$/legou-item/legou-item-service/legou-item-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-master.iml" filepath="$PROJECT_DIR$/legou-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-page/legou-page.iml" filepath="$PROJECT_DIR$/legou-page/legou-page.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-registry/legou-registry.iml" filepath="$PROJECT_DIR$/legou-registry/legou-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-search/legou-search.iml" filepath="$PROJECT_DIR$/legou-search/legou-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-user/legou-user.iml" filepath="$PROJECT_DIR$/legou-user/legou-user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-user/legou-user-interface/legou-user-interface.iml" filepath="$PROJECT_DIR$/legou-user/legou-user-interface/legou-user-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/legou-user/legou-user-service/legou-user-service.iml" filepath="$PROJECT_DIR$/legou-user/legou-user-service/legou-user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/message-server/message-server.iml" filepath="$PROJECT_DIR$/message-server/message-server.iml" />
+    </modules>
+  </component>
+</project>

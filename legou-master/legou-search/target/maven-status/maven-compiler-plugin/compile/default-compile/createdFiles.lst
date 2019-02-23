@@ -1,0 +1,17 @@
+cn\wangkf\service\SearchService.class
+cn\wangkf\bo\SearchRequest.class
+cn\wangkf\client\CategoryClient.class
+cn\wangkf\repository\GoodsRepository.class
+cn\wangkf\service\impl\SearchServiceImpl$1.class
+cn\wangkf\client\SpecClient.class
+cn\wangkf\client\GoodsClient.class
+cn\wangkf\pojo\Goods.class
+cn\wangkf\vo\SearchResult.class
+cn\wangkf\client\SpuClient.class
+cn\wangkf\controller\SearchController.class
+cn\wangkf\client\BrandClient.class
+cn\wangkf\service\impl\SearchServiceImpl$3.class
+cn\wangkf\listener\GoodsListener.class
+cn\wangkf\LgSearchService.class
+cn\wangkf\service\impl\SearchServiceImpl$2.class
+cn\wangkf\service\impl\SearchServiceImpl.class

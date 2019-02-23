@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-auth" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-auth/legou-auth-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-auth/legou-auth-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-item" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-item/legou-item-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-item/legou-item-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-page" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-registry" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-search" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-user/legou-user-interface" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/legou-user/legou-user-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/message-server" charset="UTF-8" />
+  </component>
+</project>

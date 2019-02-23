@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: cn.wangkf.client.CategoryClientTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.245 s <<< FAILURE! - in cn.wangkf.client.CategoryClientTest
+initializationError(cn.wangkf.client.CategoryClientTest)  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.Exception: No runnable methods
+

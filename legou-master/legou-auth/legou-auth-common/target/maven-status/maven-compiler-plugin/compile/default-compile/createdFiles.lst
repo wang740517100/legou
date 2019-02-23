@@ -1,0 +1,6 @@
+cn\wangkf\auth\entity\UserInfo.class
+cn\wangkf\auth\utils\ObjectUtils.class
+cn\wangkf\auth\utils\JwtUtils.class
+cn\wangkf\auth\utils\RsaUtils.class
+cn\wangkf\auth\AuthCommon.class
+cn\wangkf\auth\utils\JwtConstans.class

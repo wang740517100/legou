@@ -1,0 +1,62 @@
+server:
+  port: 8404
+spring:
+  application:
+    name: gateway
+eureka:
+  client:
+    service-url:
+      #defaultZone: http://127.0.0.1:8403/eureka
+      defaultZone: http://192.168.248.128:8403/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true  #当你获取host时，返回的不是主机名，而是ip
+    ip-address: 127.0.0.1
+
+zuul:
+  prefix: /api # 添加路由前缀
+  retryable: true
+  routes:
+    item-service: /item/**  #商品微服务
+    search-service: /search/**  #搜索微服务
+    user-service: /user/**  #用户微服务
+    auth-service: /auth/** #授权中心微服务
+    cart-service: /cart/** #购物车微服务
+    file-service:         #文件微服务
+      path: /upload/**
+      service: file-service
+      strip-prefix: false
+  #*******************
+  add-host-header: true #携带请求本身的head头信息
+  sensitive-headers: #匹配禁止使用的头信息，这里设置为null，否则set-cookie无效
+
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms
+
+
+legou:
+  jwt:
+    cookieName: LG_TOKEN
+    pubKeyPath: E:\myproject\upload\tmp\rsa.pub # 公钥地址
+  #授权的白名单
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item

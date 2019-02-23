@@ -1,0 +1,18 @@
+-------------------------------------------------------------------------------
+Test set: cn.wangkf.client.ElasticsearchTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 14.76 s <<< FAILURE! - in cn.wangkf.client.ElasticsearchTest
+testAgg(cn.wangkf.client.ElasticsearchTest)  Time elapsed: 0.179 s  <<< ERROR!
+org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{qACXgjZJRzCxqqPZYgVyKA}{192.168.248.128}{192.168.248.128:9300}]
+	at cn.wangkf.client.ElasticsearchTest.testAgg(ElasticsearchTest.java:94)
+
+createIndex(cn.wangkf.client.ElasticsearchTest)  Time elapsed: 0 s  <<< ERROR!
+org.elasticsearch.client.transport.NoNodeAvailableException: None of the configured nodes are available: [{#transport#-1}{qACXgjZJRzCxqqPZYgVyKA}{192.168.248.128}{192.168.248.128:9300}]
+	at cn.wangkf.client.ElasticsearchTest.createIndex(ElasticsearchTest.java:47)
+
+loadData(cn.wangkf.client.ElasticsearchTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.RuntimeException: com.netflix.client.ClientException: Load balancer does not have available server for client: item-service
+	at cn.wangkf.client.ElasticsearchTest.loadData(ElasticsearchTest.java:59)
+Caused by: com.netflix.client.ClientException: Load balancer does not have available server for client: item-service
+	at cn.wangkf.client.ElasticsearchTest.loadData(ElasticsearchTest.java:59)
+
