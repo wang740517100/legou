@@ -5,8 +5,8 @@
   - 后台系统核心架构：spring cloud 
 	- 配置中心: apollo 统一配置中心
 	- 注册中心：采用 eureka 注册中，可搭配 swagger 使用
-        - 网关服务：nginx 做网关，zuul做路由
-        - 信息服务：发送短信和邮件
+	- 网关服务：nginx 做网关，zuul做路由
+	- 信息服务：发送短信和邮件
 	- 文件服务：fastdfs，分布式中小文件服务
 	- 权限管理：单点登录方案，采用JWT + RSA 分布式鉴权，对用户及API进行权限控制
 	- 商品查询：基于 elasticsearch 高并发大数据的查询解决方案
