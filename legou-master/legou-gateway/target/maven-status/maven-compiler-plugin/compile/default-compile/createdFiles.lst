@@ -1,0 +1,5 @@
+cn\wangkf\config\JwtProperties.class
+cn\wangkf\LgGateway.class
+cn\wangkf\config\FilterProperties.class
+cn\wangkf\config\GlobalCorsConfig.class
+cn\wangkf\filter\AuthFilter.class

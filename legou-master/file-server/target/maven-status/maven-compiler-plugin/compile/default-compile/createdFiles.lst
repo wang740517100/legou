@@ -1,0 +1,6 @@
+cn\wangkf\config\FastClientImporter.class
+cn\wangkf\controller\UploadController.class
+cn\wangkf\service\impl\UploadServiceImpl.class
+cn\wangkf\FileService.class
+cn\wangkf\service\UploadService.class
+cn\wangkf\config\UploadProperties.class

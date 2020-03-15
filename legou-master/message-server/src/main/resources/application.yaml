@@ -1,0 +1,17 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: message-server
+  rabbitmq:
+    virtual-host: /legou
+    username: legou
+    password: legou
+    host: 192.168.248.128
+
+legou:
+  sms:
+    accessKeyId: LTAIc259TULYzaS7
+    accessKeySecret: 1uh79I1UAmwQ4YWsSmOgxw7JEBGA0v
+    signName: 乐狗商城
+    verifyCodeTemplate: SMS_148614415
