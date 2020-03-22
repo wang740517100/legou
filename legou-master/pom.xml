@@ -19,6 +19,7 @@
         <module>legou-user</module>
         <module>legou-auth</module>
         <module>cache-server</module>
+        <module>cache-storm</module>
     </modules>
 
     <packaging>pom</packaging>

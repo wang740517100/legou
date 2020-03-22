@@ -4,7 +4,7 @@ import cn.wangkf.item.api.GoodsApi;
 import cn.wangkf.item.bo.SpuBo;
 import cn.wangkf.service.CacheService;
 import cn.wangkf.util.SpringContext;
-import cn.wangkf.zk.ZooKeeperSession;
+import cn.wangkf.zk.ZooKeeperClient;
 import com.alibaba.fastjson.JSONObject;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
@@ -70,7 +70,7 @@ public class KafkaMessageProcessor implements Runnable {
 		
 		
 		// 加代码，在将数据直接写入redis缓存之前，应该先获取一个zk的分布式锁
-		ZooKeeperSession zkSession = ZooKeeperSession.getInstance();
+		ZooKeeperClient zkSession = ZooKeeperClient.getInstance();
 		zkSession.acquireDistributedLock(spuId);
 		
 		// 获取到了锁

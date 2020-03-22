@@ -29,7 +29,7 @@ public class UploadServiceImpl implements UploadService {
     private FastFileStorageClient storageClient;
 
 
-    private static final Logger logger= LoggerFactory.getLogger(UploadServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(UploadServiceImpl.class);
 
     @Autowired
     private UploadProperties prop;

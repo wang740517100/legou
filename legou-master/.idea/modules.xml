@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cache-server/cache-server.iml" filepath="$PROJECT_DIR$/cache-server/cache-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cache-storm/cache-storm.iml" filepath="$PROJECT_DIR$/cache-storm/cache-storm.iml" />
       <module fileurl="file://$PROJECT_DIR$/file-server/file-server.iml" filepath="$PROJECT_DIR$/file-server/file-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-auth/legou-auth.iml" filepath="$PROJECT_DIR$/legou-auth/legou-auth.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-auth/legou-auth-common/legou-auth-common.iml" filepath="$PROJECT_DIR$/legou-auth/legou-auth-common/legou-auth-common.iml" />

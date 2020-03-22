@@ -7,7 +7,7 @@ import javax.servlet.ServletContextListener;
 import cn.wangkf.kafka.KafkaConsumer;
 import cn.wangkf.rebuild.RebuildCacheThread;
 import cn.wangkf.util.SpringContext;
-import cn.wangkf.zk.ZooKeeperSession;
+import cn.wangkf.zk.ZooKeeperClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -26,7 +26,7 @@ public class InitListener implements ServletContextListener {
 		new Thread(new KafkaConsumer("cache-message")).start();
 		new Thread(new RebuildCacheThread()).start();
 		
-		ZooKeeperSession.init();
+		ZooKeeperClient.init();
 	}
 	
 	public void contextDestroyed(ServletContextEvent sce) {

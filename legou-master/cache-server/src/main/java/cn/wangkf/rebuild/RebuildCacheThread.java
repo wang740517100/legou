@@ -3,7 +3,7 @@ package cn.wangkf.rebuild;
 import cn.wangkf.item.bo.SpuBo;
 import cn.wangkf.service.CacheService;
 import cn.wangkf.util.SpringContext;
-import cn.wangkf.zk.ZooKeeperSession;
+import cn.wangkf.zk.ZooKeeperClient;
 
 import java.text.SimpleDateFormat;
 
@@ -18,7 +18,7 @@ public class RebuildCacheThread implements Runnable {
 
 	public void run() {
 		RebuildCacheQueue rebuildCacheQueue = RebuildCacheQueue.getInstance();
-		ZooKeeperSession zkSession = ZooKeeperSession.getInstance();
+		ZooKeeperClient zkSession = ZooKeeperClient.getInstance();
 		CacheService cacheService = (CacheService) SpringContext.getApplicationContext()
 				.getBean("cacheService");
 		
