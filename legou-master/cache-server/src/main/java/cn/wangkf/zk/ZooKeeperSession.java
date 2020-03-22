@@ -10,8 +10,7 @@ import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 
 /**
- * ZooKeeperSession
- * @author Administrator
+ * ZooKeeperSession：用来做分布式事务管理
  *
  */
 public class ZooKeeperSession {

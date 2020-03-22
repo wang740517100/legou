@@ -5,11 +5,11 @@ spring:
     name: ly-registry
 eureka:
   client:
-    fetch-registry: false
-    register-with-eureka: false
+    fetch-registry: false  #是否检索服务
+    register-with-eureka: false  #是否向服务注册中心注册自己
     service-url:
       defaultZone: http://127.0.0.1:8403/eureka
       #defaultZone: http://192.168.248.128:8403/eureka
   server:
     enable-self-preservation: false  #关闭自我保护
-    eviction-interval-timer-in-ms: 5000 #每隔5秒进行一次服务列表清理
+    eviction-interval-timer-in-ms: 5000 #清理节点的时间间隔 默认60秒

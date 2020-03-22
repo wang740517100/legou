@@ -1,9 +1,10 @@
-package cn.wangkf.spring;
+package cn.wangkf.util;
 
 import org.springframework.context.ApplicationContext;
 
 /**
- * spring上下文
+ * spring上下文：用来获取 bean
+ *
  *
  */
 public class SpringContext {

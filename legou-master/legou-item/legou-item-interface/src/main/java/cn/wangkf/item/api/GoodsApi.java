@@ -4,6 +4,7 @@ import cn.wangkf.common.vo.PageResult;
 import cn.wangkf.item.bo.SpuBo;
 import cn.wangkf.item.pojo.Sku;
 import cn.wangkf.item.pojo.SpuDetail;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,4 +65,5 @@ public interface GoodsApi {
      */
     @GetMapping("sku/{id}")
     Sku querySkuById(@PathVariable("id") Long id);
+
 }

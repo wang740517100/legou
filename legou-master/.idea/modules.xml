@@ -12,7 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/legou-item/legou-item.iml" filepath="$PROJECT_DIR$/legou-item/legou-item.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-item/legou-item-interface/legou-item-interface.iml" filepath="$PROJECT_DIR$/legou-item/legou-item-interface/legou-item-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-item/legou-item-service/legou-item-service.iml" filepath="$PROJECT_DIR$/legou-item/legou-item-service/legou-item-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/legou-master.iml" filepath="$PROJECT_DIR$/legou-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/legou-master.iml" filepath="$PROJECT_DIR$/.idea/legou-master.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-page/legou-page.iml" filepath="$PROJECT_DIR$/legou-page/legou-page.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-registry/legou-registry.iml" filepath="$PROJECT_DIR$/legou-registry/legou-registry.iml" />
       <module fileurl="file://$PROJECT_DIR$/legou-search/legou-search.iml" filepath="$PROJECT_DIR$/legou-search/legou-search.iml" />

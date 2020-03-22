@@ -68,6 +68,35 @@ public class GoodsController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /**
+     * 根据id查询商品
+     * @param id
+     * @return
+     */
+    @GetMapping("/spu/{id}")
+    public ResponseEntity<SpuBo> queryGoodsById(@PathVariable("id") Long id) {
+        SpuBo spuBo = this.goodsService.queryGoodsById(id);
+        if (spuBo == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.ok(spuBo);
+        }
+
+    }
+
+
+    /**
+     * 修改商品
+     * @param spuBo
+     * @return
+     */
+    @PutMapping
+    public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spuBo){
+        this.goodsService.updateGoods(spuBo);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+
+    }
+
 
     /**
      * 删除商品
@@ -98,12 +127,6 @@ public class GoodsController {
     public ResponseEntity<List<Sku>> querySkuBySpuId(@PathVariable("id") Long id){
         List<Sku> list = this.goodsService.querySkuBySpuId(id);
         return ResponseEntity.ok(list);
-        //没有不能报错
-        /*if (list == null || list.size() < 1){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }else {
-            return ResponseEntity.ok(list);
-        }*/
     }
 
     /**
@@ -127,21 +150,15 @@ public class GoodsController {
 
 
 
+
     /**
-     * 根据id查询商品
+     * 根据id查询商品，回写 redis cluster
      * @param id
      * @return
      */
-    @GetMapping("/spu/{id}")
-    public SpuBo queryGoodsById(@PathVariable("id") Long id){
-//        SpuBo spuBo = this.goodsService.queryGoodsById(id);
-//        if (spuBo == null){
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//        return ResponseEntity.ok(spuBo);
-
+    @GetMapping("/cache/spu/{id}")
+    public ResponseEntity<SpuBo> queryGoodsByCache(@PathVariable("id") Long id){
         SpuBo spuBo = null;
-
         try{
 
             // 添加到 queue 里面等待执行查询
@@ -161,7 +178,7 @@ public class GoodsController {
                 spuBo = goodsService.getSpuBoCasche(id);
 
                 if (spuBo != null) {
-                    return spuBo;
+                    return ResponseEntity.ok(spuBo);
                 } else {
                     Thread.sleep(20);
                     endTime = System.currentTimeMillis();
@@ -181,19 +198,16 @@ public class GoodsController {
             e.printStackTrace();
         }
 
-        return spuBo;
+        return ResponseEntity.ok(spuBo);
     }
 
     /**
-     * 修改商品
+     * 修改商品和删除缓存
      * @param spuBo
      * @return
      */
     @PutMapping
-    public ResponseEntity<Void> updateGoods(@RequestBody SpuBo spuBo){
-//        this.goodsService.updateGoods(spuBo);
-//        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-
+    public ResponseEntity<Void> updateGoodsByCache(@RequestBody SpuBo spuBo){
         Request request = new GoodsUpdateCacheRequest(spuBo, goodsService, false);
         requestRouteService.process(request);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();

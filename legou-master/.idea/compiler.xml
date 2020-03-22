@@ -22,7 +22,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="casche-server" />
+        <module name="cache-server" />
         <module name="file-server" />
         <module name="legou-auth-common" />
         <module name="legou-auth-service" />
@@ -39,7 +39,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="casche-server" target="1.8" />
+      <module name="cache-server" target="1.8" />
       <module name="file-server" target="1.8" />
       <module name="legou-auth" target="1.8" />
       <module name="legou-auth-common" target="1.8" />

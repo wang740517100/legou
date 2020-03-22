@@ -3,18 +3,24 @@ package cn.wangkf.service.impl;
 import javax.annotation.Resource;
 
 import cn.wangkf.common.utils.DozerUtils;
+import cn.wangkf.item.api.GoodsApi;
 import cn.wangkf.item.bo.SpuBo;
 import cn.wangkf.item.pojo.Sku;
 import cn.wangkf.item.pojo.Spu;
 import cn.wangkf.item.pojo.SpuDetail;
+import cn.wangkf.rebuild.RebuildCacheQueue;
 import cn.wangkf.service.CacheService;
 import com.alibaba.fastjson.JSON;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.ribbon.proxy.annotation.Hystrix;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import redis.clients.jedis.JedisCluster;
 
 import com.alibaba.fastjson.JSONObject;
+import redis.clients.jedis.JedisCluster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +37,8 @@ public class CacheServiceImpl implements CacheService {
 
 	private static final String REDIS_SKU_KEY_PRE = "item-service_sku_spuid_";
 
+	@Autowired
+	private GoodsApi goodsApi;
 	
 	@Resource
 	private JedisCluster jedisCluster;
@@ -89,7 +97,43 @@ public class CacheServiceImpl implements CacheService {
 		return null;
 	}
 
+	@Override
+	@HystrixCommand(fallbackMethod = "getFallBack",commandKey = "QuerySpuBoInfo", groupKey = "CacheService",
+			threadPoolKey = "QuerySpuBoInfoPool", threadPoolProperties = {
+			@HystrixProperty(name = "coreSize", value = "10"),
+			@HystrixProperty(name = "maxQueueSize", value = "5"),
+			@HystrixProperty(name = "keepAliveTimeMinutes", value = "1"),
+			@HystrixProperty(name = "queueSizeRejectionThreshold", value = "5"),
+			@HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "10"),
+			@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000")
+	})
+	public SpuBo querySpuBoInfo(Long id) {
+		SpuBo spuBo = null;
+
+		spuBo = this.getSpuBoCasche(id);
+		System.out.println("=================从redis中获取缓存，商品信息=" + spuBo);
+
+		if(spuBo == null) {
+			spuBo = this.getSpuBoLocalCache(id);
+			System.out.println("=================从ehcache中获取缓存，商品信息=" + spuBo);
+		}
+
+		if(spuBo == null) {
+			// 就需要从数据源重新拉去数据，重建缓存
+			spuBo = goodsApi.queryGoodsById(id);
+			// 将数据推送到一个内存队列中
+			RebuildCacheQueue rebuildCacheQueue = RebuildCacheQueue.getInstance();
+			rebuildCacheQueue.putProductInfo(spuBo);
+		}
+		return spuBo;
+	}
+
+	protected String getFallback(Throwable e) {
+		System.out.println(e.getMessage());
+		e.printStackTrace();
+		return "faild";
+	}
 
 
-	
+
 }

@@ -39,5 +39,14 @@ public interface CacheService {
 	public SpuBo getSpuBoLocalCache(Long id);
 
 
+
+	/**
+	 * 当 nginx 中没有缓存信息时会到该缓存服务中来查询
+	 * @param id
+	 * @return
+	 */
+	public SpuBo querySpuBoInfo(Long id);
+
+
 	
 }

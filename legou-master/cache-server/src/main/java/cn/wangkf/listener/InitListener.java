@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 
 import cn.wangkf.kafka.KafkaConsumer;
 import cn.wangkf.rebuild.RebuildCacheThread;
-import cn.wangkf.spring.SpringContext;
+import cn.wangkf.util.SpringContext;
 import cn.wangkf.zk.ZooKeeperSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
