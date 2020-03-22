@@ -11,8 +11,11 @@ import cn.wangkf.item.pojo.SpuDetail;
 import cn.wangkf.rebuild.RebuildCacheQueue;
 import cn.wangkf.service.CacheService;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCollapser;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
 import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -24,6 +27,7 @@ import redis.clients.jedis.JedisCluster;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Future;
 
 
 @Service("cacheService")
@@ -97,8 +101,12 @@ public class CacheServiceImpl implements CacheService {
 		return null;
 	}
 
-	@Override
-	@HystrixCommand(fallbackMethod = "getFallBack",commandKey = "QuerySpuBoInfo", groupKey = "CacheService",
+
+
+
+
+	@CacheResult(cacheKeyMethod = "getSpuBoCacheKey")  // 对应 update 方法可使用 @CacheRemove
+	@HystrixCommand(fallbackMethod = "getSpuBoFallback",commandKey = "QuerySpuBoInfo", groupKey = "CacheService",
 			threadPoolKey = "QuerySpuBoInfoPool", threadPoolProperties = {
 			@HystrixProperty(name = "coreSize", value = "10"),
 			@HystrixProperty(name = "maxQueueSize", value = "5"),
@@ -107,15 +115,11 @@ public class CacheServiceImpl implements CacheService {
 			@HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "10"),
 			@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000")
 	})
+	@Override
 	public SpuBo querySpuBoInfo(Long id) {
-		SpuBo spuBo = null;
-
-		spuBo = this.getSpuBoCasche(id);
-		System.out.println("=================从redis中获取缓存，商品信息=" + spuBo);
-
+		SpuBo spuBo = this.getSpuBoCasche(id);
 		if(spuBo == null) {
 			spuBo = this.getSpuBoLocalCache(id);
-			System.out.println("=================从ehcache中获取缓存，商品信息=" + spuBo);
 		}
 
 		if(spuBo == null) {
@@ -128,12 +132,78 @@ public class CacheServiceImpl implements CacheService {
 		return spuBo;
 	}
 
-	protected String getFallback(Throwable e) {
-		System.out.println(e.getMessage());
+
+
+	/**
+	 *  getCacheKey 方法的参数要与 querySpuBoInfo 方法保持一致否则会报错
+	 * @param id
+	 * @return
+	 */
+	public String getSpuBoCacheKey(Long id) {
+		return "spuBo_info_" + id;
+
+	}
+
+
+    /**
+	 * 请求折叠技术
+	 * @param ids
+	 * @return
+     */
+
+	@HystrixCollapser(batchMethod = "querySpuBoList", collapserProperties = {
+			//收集1秒内的请求
+			@HystrixProperty(name = "timerDelayInMilliseconds", value = "1000")
+	})
+	@Override
+	public Future<List<SpuBo>> queryBatchSpuBoInfo(List<Long> ids) {
+		return null;
+	}
+
+	@CacheResult(cacheKeyMethod = "getBatchSpuBoCacheKey")
+	@HystrixCommand(fallbackMethod = "getSpuBoFallback", commandKey = "QueryBatchSpuBoInfo", groupKey = "CacheService",
+			threadPoolKey = "QuerySpuBoInfoPool", threadPoolProperties = {
+			@HystrixProperty(name = "coreSize", value = "10"),
+			@HystrixProperty(name = "maxQueueSize", value = "5"),
+			@HystrixProperty(name = "keepAliveTimeMinutes", value = "1"),
+			@HystrixProperty(name = "queueSizeRejectionThreshold", value = "5"),
+			@HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "10"),
+			@HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000")
+	})
+	public List<List<SpuBo>> querySpuBoList(List<List<Long>> batchIds) {
+		List<List<SpuBo>> res = Lists.newArrayList();
+		batchIds.forEach(b -> {
+
+			List<SpuBo> spuBoList = Lists.newArrayList();
+			for (Long id : b) {
+				SpuBo spuBo = this.querySpuBoInfo(id);
+				spuBoList.add(spuBo);
+			}
+			res.add(spuBoList);
+		});
+		return res;
+	}
+
+	/**
+	 *  getCacheKey 方法的参数要与 querySpuBoInfo 方法保持一致否则会报错
+	 * @param batchIds
+	 * @return
+	 */
+	public String getBatchSpuBoCacheKey(List<List<Long>> batchIds) {
+		return "spuBo_info_" + batchIds.toString();
+
+	}
+
+
+	/**
+	 * hystrix 快速失败方法
+	 * @param e
+	 * @return
+	 */
+	protected String getSpuBoFallback(Throwable e) {
 		e.printStackTrace();
 		return "faild";
 	}
-
 
 
 }

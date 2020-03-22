@@ -3,6 +3,9 @@ package cn.wangkf.service;
 
 import cn.wangkf.item.bo.SpuBo;
 
+import java.util.List;
+import java.util.concurrent.Future;
+
 /**
  * 缓存service接口
  * @author Administrator
@@ -29,14 +32,14 @@ public interface CacheService {
 	 * @param spuBo
 	 * @return
 	 */
-	public SpuBo saveSpuBoLocalCache(SpuBo spuBo);
+	SpuBo saveSpuBoLocalCache(SpuBo spuBo);
 
 	/**
 	 * 从本地缓存中获取商品信息
 	 * @param id
 	 * @return
 	 */
-	public SpuBo getSpuBoLocalCache(Long id);
+	SpuBo getSpuBoLocalCache(Long id);
 
 
 
@@ -45,7 +48,15 @@ public interface CacheService {
 	 * @param id
 	 * @return
 	 */
-	public SpuBo querySpuBoInfo(Long id);
+	SpuBo querySpuBoInfo(Long id);
+
+
+	/**
+	 * 当 nginx 中没有缓存信息时会到该缓存服务中来查询
+	 * @param ids
+	 * @return
+	 */
+	Future<List<SpuBo>> queryBatchSpuBoInfo(List<Long> ids);
 
 
 	
